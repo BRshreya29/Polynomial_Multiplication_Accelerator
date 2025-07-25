@@ -37,6 +37,8 @@ The design was written, simulated, synthesized and timing-closed in **Vivado 202
 | `INTT_1`    | 8    | Inverse NTT stage 1 + final serialization (PWM)                         | `send == 1` → `DONE`                                     |
 | `DONE`      | 9    | Final output valid, assert `done`                                       | Stay in `DONE`                                           |
 
+---
+
 ## 3) I/O (top_polynomial_fsm)
 
 ```verilog
@@ -48,6 +50,7 @@ module top_polynomial_fsm (
     output [11:0] final_output,
     output done
 );
+```
 
 **Clock/Reset**  
 ```verilog
@@ -56,8 +59,9 @@ input clk;
 
 // Reset: async posedge reset to FSM and submodules
 input rst;
-
+```
 **Data**
+```verilog
 // External polynomial inputs consumed during PRE_LOAD
 input [11:0] in1, in2;
 
@@ -66,6 +70,8 @@ output [11:0] final_output;
 
 // Asserted high when the entire pipeline completes
 output done;
+```
+---
 
 ## 4) Summary 
 
